@@ -6,8 +6,18 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Jobs from './pages/Jobs';
 import Favorites from './pages/Favorites';
 import JobDetails from './pages/JobDetails';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 const Stack = createNativeStackNavigator();
+
+const Drawer = createDrawerNavigator();
+
+const DrawerStack = () => (
+  <Drawer.Navigator>
+    <Drawer.Screen name="Jobs" component={Jobs} />
+    <Drawer.Screen name="Favorites" component={Favorites} />
+  </Drawer.Navigator>
+);
 
 export default function Router() {
   return (
@@ -16,7 +26,7 @@ export default function Router() {
         <Stack.Navigator>
           <Stack.Screen
             name="Home"
-            component={Jobs}
+            component={DrawerStack}
             options={{
               headerShown: false,
             }}
