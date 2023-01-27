@@ -8,14 +8,21 @@ const slice = createSlice({
     favorites: [],
   },
   reducers: {
-    addFavorites: (state, action) => {},
+    addFavorites: (state, action) => {
+      state.favorites = [...state.favorites, action.payload.job];
+    },
+    removeFavorites: (state, action) => {
+      state.favorites = state.favorites.filter(
+        job => job.id !== action.payload.id,
+      );
+    },
     setJobs: (state, action) => {
       state.jobs = action.payload;
     },
   },
 });
 
-export const {addFavorites, setJobs} = slice.actions;
+export const {addFavorites, setJobs, removeFavorites} = slice.actions;
 
 export const useJobs = () => useSelector(state => state.jobs);
 
